@@ -6,6 +6,8 @@ public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
     public Vector3 offset;
+    public Vector3 cameraPosBehind;
+    public Vector3 cameraPosFront;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,17 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            if(offset == cameraPosBehind) 
+            {
+                offset = cameraPosFront;
+            }
+            else if (offset == cameraPosFront) 
+            {
+                offset = cameraPosBehind;
+            }
+        }
         transform.position = player.transform.position + offset;
     }
 }
